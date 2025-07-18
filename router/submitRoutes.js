@@ -13,6 +13,7 @@ router.post("/apply-form", (req, res) => {
     VALUES (?, ?, ?, ?, ?, ?)
   `;
 
+  // console.log("Received application:", req.body);
   db.query(query, [fullName, phone, whatsapp, applyAs, email, city], (err) => {
     if (err) {
       console.error("DB Error:", err);

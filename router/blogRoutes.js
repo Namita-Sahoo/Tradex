@@ -25,7 +25,7 @@ router.get("/", (req, res) => {
 });
 
 // Get a single blog by ID
-router.get("/:id", (req, res) => {
+router.get("/get_by_id/:id", (req, res) => {
   const { id } = req.params;
   db.query("SELECT * FROM blogs WHERE id = ?", [id], (err, result) => {
     if (err) return res.status(500).json({ error: err.message });
@@ -54,7 +54,7 @@ router.post("/", upload.single("image"), (req, res) => {
 
 
 // Update a blog
-router.put("/:id", (req, res) => {
+router.put("/update_by_id/:id", (req, res) => {
   const { id } = req.params;
   const { title, description, image, author } = req.body;
   const query = "UPDATE blogs SET title = ?, description = ?, image = ?, author = ? WHERE id = ?";
@@ -66,7 +66,7 @@ router.put("/:id", (req, res) => {
 });
 
 // Delete a blog
-router.delete("/:id", (req, res) => {
+router.delete("/delete_by_id/:id", (req, res) => {
   const { id } = req.params;
   db.query("DELETE FROM blogs WHERE id = ?", [id], (err, result) => {
     if (err) return res.status(500).json({ error: err.message });
